@@ -2,6 +2,7 @@ package com.example.projetoprogramacaoweb2.controller;
 
 import com.example.projetoprogramacaoweb2.model.CategoriaDTO;
 import com.example.projetoprogramacaoweb2.service.CategoriaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @RequestMapping("/categorias")
 public class CategoriaController {
 
+    @Autowired
     CategoriaService categoriaService;
 
     @GetMapping

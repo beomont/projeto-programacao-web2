@@ -2,10 +2,7 @@ package com.example.projetoprogramacaoweb2.model.entity;
 
 import com.example.projetoprogramacaoweb2.model.CategoriaDTO;
 import com.example.projetoprogramacaoweb2.model.EditoraDTO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +12,8 @@ import lombok.Setter;
 @Table(name="categoria")
 public class CategoriaEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     @Column(name="nome", nullable=false,length = 100)
     private String nome;
