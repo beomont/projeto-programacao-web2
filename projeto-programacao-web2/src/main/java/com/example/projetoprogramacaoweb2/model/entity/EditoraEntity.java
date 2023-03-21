@@ -1,6 +1,6 @@
 package com.example.projetoprogramacaoweb2.model.entity;
 
-import com.example.projetoprogramacaoweb2.model.EditoraDTO;
+import com.example.projetoprogramacaoweb2.model.dto.EditoraDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,11 +19,5 @@ public class EditoraEntity {
         private String nome;
         private String descricao;
 
-        public EditoraEntity update(EditoraDTO editoraDTO) {
-                this.id = editoraDTO.getId();
-                this.nome = editoraDTO.getNome();
-                this.descricao = editoraDTO.getDescricao();
-                return this;
-        }
 
 }

@@ -1,4 +1,4 @@
-package com.example.projetoprogramacaoweb2.model;
+package com.example.projetoprogramacaoweb2.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;

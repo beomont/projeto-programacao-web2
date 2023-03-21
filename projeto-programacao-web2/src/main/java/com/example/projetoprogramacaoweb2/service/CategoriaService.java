@@ -1,7 +1,8 @@
 package com.example.projetoprogramacaoweb2.service;
 
-import com.example.projetoprogramacaoweb2.model.CategoriaDTO;
+import com.example.projetoprogramacaoweb2.model.dto.CategoriaDTO;
 import com.example.projetoprogramacaoweb2.model.entity.CategoriaEntity;
+import com.example.projetoprogramacaoweb2.model.mapper.CategoriaMapper;
 import com.example.projetoprogramacaoweb2.repository.CategoriaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,17 @@ import java.util.Optional;
 public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
+    @Autowired
+    private CategoriaMapper categoriaMapper;
 
 
     public CategoriaDTO pegarCategoriaById(Long id) {
-
 
         Optional<CategoriaEntity> categoriaEntityOp = categoriaRepository.findById(id);
 
         if (categoriaEntityOp.isPresent()) {
             CategoriaEntity categoriaEntity = categoriaEntityOp.get();
-            return new CategoriaDTO().update(categoriaEntity);
+            return categoriaMapper.update(categoriaEntity);
         }
         throw new EntityNotFoundException();
     }
@@ -31,36 +33,43 @@ public class CategoriaService {
     public CategoriaDTO criar(CategoriaDTO categoriaDTO) {
 
         //Vem a informação do usuário, converto em Entity
-        CategoriaEntity categoria = new CategoriaEntity().updateCreate(categoriaDTO);
+        CategoriaEntity categoria = categoriaMapper.update(categoriaDTO);
 
         //Salvo a categoria em entity na base de dados
         categoria = categoriaRepository.save(categoria);
 
         //Converto novamente para DTO e retorno para o usuário
-        return new CategoriaDTO().update(categoria);
+        return categoriaMapper.update(categoria);
 
     }
 
-    public CategoriaDTO editar(CategoriaDTO categoriaDTO, Integer id) {
-        //recupero a categoria da base
-//        categoriaRepository.findById(id);
+    public CategoriaDTO editar(CategoriaDTO categoriaDTO, Long id) {
 
-        //update dos campos
+        if(categoriaRepository.existsById(id)){
+            CategoriaEntity categoriaEntity = categoriaMapper.update(categoriaDTO);
+            categoriaEntity.setId(id);
+            categoriaEntity = categoriaRepository.save(categoriaEntity);
 
-
-        //salva no banco novamente
-        return null;
+            return categoriaMapper.update(categoriaEntity);
+        }
+        throw new EntityNotFoundException("Categoria não encontrada");
     }
 
     public void deletar(Long id) {
+        Optional<CategoriaEntity> categoriaEntityOp = categoriaRepository.findById(id);
+
+        if (categoriaEntityOp.isPresent()) {
+            CategoriaEntity categoriaEntity = categoriaEntityOp.get();
+            categoriaRepository.delete(categoriaEntity);
+            return;
+        }
+        throw new EntityNotFoundException("Categoria não encontrada!");
 
     }
 
     public List<CategoriaDTO> getCategoriasDTO() {
         List<CategoriaEntity> listaEntities = categoriaRepository.findAll();
-        return listaEntities.stream()
-                .map(categoriaEntity -> new CategoriaDTO().update(categoriaEntity))
-                .toList();
+        return categoriaMapper.updateListDTO(listaEntities);
     }
 
 

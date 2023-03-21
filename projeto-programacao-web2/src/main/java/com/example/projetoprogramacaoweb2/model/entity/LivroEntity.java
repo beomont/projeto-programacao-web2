@@ -1,6 +1,5 @@
 package com.example.projetoprogramacaoweb2.model.entity;
 
-import com.example.projetoprogramacaoweb2.model.EditoraDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
