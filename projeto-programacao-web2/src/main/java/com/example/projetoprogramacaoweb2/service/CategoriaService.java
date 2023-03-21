@@ -27,7 +27,7 @@ public class CategoriaService {
             CategoriaEntity categoriaEntity = categoriaEntityOp.get();
             return categoriaMapper.update(categoriaEntity);
         }
-        throw new EntityNotFoundException();
+        throw new EntityNotFoundException("Categoria não encontrada");
     }
 
     public CategoriaDTO criar(CategoriaDTO categoriaDTO) {
@@ -64,10 +64,9 @@ public class CategoriaService {
             return;
         }
         throw new EntityNotFoundException("Categoria não encontrada!");
-
     }
 
-    public List<CategoriaDTO> getCategoriasDTO() {
+    public List<CategoriaDTO> listarTodos() {
         List<CategoriaEntity> listaEntities = categoriaRepository.findAll();
         return categoriaMapper.updateListDTO(listaEntities);
     }

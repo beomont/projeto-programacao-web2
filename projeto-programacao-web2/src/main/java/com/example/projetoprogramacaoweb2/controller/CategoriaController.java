@@ -7,7 +7,6 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.config.RepositoryNameSpaceHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,7 @@ public class CategoriaController {
     public ResponseEntity<Object> listarTodos() {
         try {
 //            throw new Exception("Erro teste");
-            return ResponseEntity.ok(categoriaService.getCategoriasDTO());
+            return ResponseEntity.ok(categoriaService.listarTodos());
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity
