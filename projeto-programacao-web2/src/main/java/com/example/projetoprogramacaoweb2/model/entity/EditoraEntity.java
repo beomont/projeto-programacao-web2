@@ -3,6 +3,8 @@ package com.example.projetoprogramacaoweb2.model.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name="editora")
@@ -14,6 +16,9 @@ public class EditoraEntity {
         @Column(name="nome", nullable = false)
         private String nome;
         private String descricao;
+        @OneToMany(mappedBy = "editora", fetch = FetchType.LAZY)
+        private List<LivroEntity> livros;
+
 
 
 }

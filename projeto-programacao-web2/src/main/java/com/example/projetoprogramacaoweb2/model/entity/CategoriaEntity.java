@@ -4,6 +4,8 @@ import com.example.projetoprogramacaoweb2.model.dto.CategoriaDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 
 @Data
 @Entity
@@ -15,6 +17,8 @@ public class CategoriaEntity {
     private Long id;
     @Column(name="nome", nullable=false,length = 100)
     private String nome;
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    private List<LivroEntity> livros;
 
 
 

@@ -1,7 +1,7 @@
 package com.example.projetoprogramacaoweb2.controller;
 
 import com.example.projetoprogramacaoweb2.model.dto.EditoraDTO;
-import com.example.projetoprogramacaoweb2.model.dto.MenssagemDTO;
+import com.example.projetoprogramacaoweb2.model.dto.MensagemDTO;
 import com.example.projetoprogramacaoweb2.service.EditoraService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -28,7 +28,7 @@ public class EditoraController {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
     }
 
@@ -41,12 +41,12 @@ public class EditoraController {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.NO_CONTENT)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
 
     }
@@ -60,7 +60,7 @@ public class EditoraController {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
     }
 
@@ -74,7 +74,7 @@ public class EditoraController {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
     }
 
@@ -83,14 +83,14 @@ public class EditoraController {
             @PathVariable("id") Long id) {
         try {
             editoraService.deletar(id);
-            return ResponseEntity.ok(new MenssagemDTO("Categoria com id [" + id + "] removida com sucesso! "));
+            return ResponseEntity.ok(new MensagemDTO("Categoria com id [" + id + "] removida com sucesso! "));
         } catch (EntityNotFoundException ex) {
             log.error(ex.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
     }
 

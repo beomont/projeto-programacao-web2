@@ -1,7 +1,7 @@
 package com.example.projetoprogramacaoweb2.controller;
 
 import com.example.projetoprogramacaoweb2.model.dto.CategoriaDTO;
-import com.example.projetoprogramacaoweb2.model.dto.MenssagemDTO;
+import com.example.projetoprogramacaoweb2.model.dto.MensagemDTO;
 import com.example.projetoprogramacaoweb2.service.CategoriaService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -11,13 +11,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+//LOCALHOST:8080/categorias ->
 @RestController
 @RequestMapping("/categorias")
 @Slf4j
 public class CategoriaController {
 
     @Autowired
-    CategoriaService categoriaService;
+    private CategoriaService categoriaService;
 
     @GetMapping
     public ResponseEntity<Object> listarTodos() {
@@ -28,7 +29,7 @@ public class CategoriaController {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
     }
 
@@ -41,12 +42,12 @@ public class CategoriaController {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.NO_CONTENT)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
 
     }
@@ -60,7 +61,7 @@ public class CategoriaController {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
     }
 
@@ -75,7 +76,7 @@ public class CategoriaController {
             log.error(ex.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
 
     }
@@ -85,14 +86,14 @@ public class CategoriaController {
             @PathVariable("id") Long id) {
         try{
             categoriaService.deletar(id);
-         return ResponseEntity.ok(new MenssagemDTO("Categoria com id [" + id + "] removida com sucesso! "));
+         return ResponseEntity.ok(new MensagemDTO("Categoria com id [" + id + "] removida com sucesso! "));
         } catch (EntityNotFoundException ex){
             log.error(ex.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         } catch (Exception ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new MenssagemDTO(ex.getMessage()));
+                    .body(new MensagemDTO(ex.getMessage()));
         }
 
     }
