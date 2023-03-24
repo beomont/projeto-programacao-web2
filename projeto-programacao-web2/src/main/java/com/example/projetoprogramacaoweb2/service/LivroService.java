@@ -23,6 +23,11 @@ public class LivroService {
         return livroMapper.updateListaLivroDTO(listaEntities);
     }
 
+    public List<LivroDTO> filtrar(String nome, String isbn) {
+        List<LivroEntity> listaEntities = livroRepository.findByNomeOrIsbn(nome, isbn);
+        return livroMapper.updateListaLivroDTO(listaEntities);
+    }
+
     public LivroDTO pegarUm(Long id) {
 
         Optional<LivroEntity> livroEntityOp = livroRepository.findById(id);

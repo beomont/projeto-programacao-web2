@@ -19,6 +19,21 @@ public class LivroController {
     @Autowired
     private LivroService livroService;
 
+    @GetMapping("/filter")
+    public ResponseEntity<Object> pegarPorNomeIsbn(
+            @RequestParam(value = "nome", defaultValue = "") String nome,
+            @RequestParam(value = "isbn", defaultValue = "") String isbn){
+        try {
+            return ResponseEntity.ok(livroService.filtrar(nome, isbn));
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new MensagemDTO(ex.getMessage()));
+        }
+
+    }
+
     @GetMapping
     public ResponseEntity<Object> listarTodos() {
         try {

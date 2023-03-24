@@ -19,6 +19,7 @@ public class CategoriaMapper {
 
     public CategoriaEntity update(CategoriaDTO categoriaDTO) {
         CategoriaEntity categoriaEntity = new CategoriaEntity();
+        categoriaEntity.setId(categoriaDTO.getId());
         categoriaEntity.setNome(categoriaDTO.getNome());
         return categoriaEntity;
     }

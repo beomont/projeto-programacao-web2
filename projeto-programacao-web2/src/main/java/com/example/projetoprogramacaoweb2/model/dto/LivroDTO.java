@@ -9,6 +9,8 @@ public class LivroDTO {
     private Long id;
     private String nome;
     private String isbn;
+    private CategoriaDTO categoria;
+    private EditoraDTO editora;
 
 
 
