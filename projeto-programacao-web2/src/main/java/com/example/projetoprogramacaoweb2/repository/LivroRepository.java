@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface LivroRepository extends JpaRepository<LivroEntity, Long> {
 
-    @Query("SELECT l FROM LivroEntity l WHERE UPPER(l.nome) LIKE CONCAT('%',:nome,'%') OR UPPER(l.isbn) LIKE CONCACT('%',:isbn, '%')")
+    @Query("SELECT l FROM LivroEntity l WHERE UPPER(l.nome) = :nome OR UPPER(l.isbn) = :isbn ")
     List<LivroEntity> findByNomeOrIsbn(@Param("nome") String nome, @Param("isbn")String isbn);
 
     List<LivroEntity> findByCategoria(CategoriaEntity categoria);
