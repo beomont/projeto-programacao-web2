@@ -9,7 +9,6 @@ import lombok.Data;
 public class LivroEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name="editora", nullable = false)
