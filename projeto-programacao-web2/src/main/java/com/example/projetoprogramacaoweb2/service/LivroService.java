@@ -1,6 +1,8 @@
 package com.example.projetoprogramacaoweb2.service;
 
 import com.example.projetoprogramacaoweb2.model.dto.LivroDTO;
+import com.example.projetoprogramacaoweb2.model.entity.CategoriaEntity;
+import com.example.projetoprogramacaoweb2.model.entity.EditoraEntity;
 import com.example.projetoprogramacaoweb2.model.entity.LivroEntity;
 import com.example.projetoprogramacaoweb2.model.mapper.LivroMapper;
 import com.example.projetoprogramacaoweb2.repository.LivroRepository;
@@ -27,6 +29,21 @@ public class LivroService {
         List<LivroEntity> listaEntities = livroRepository.findByNomeOrIsbn(nome, isbn);
         return livroMapper.updateListaLivroDTO(listaEntities);
     }
+
+    public List<LivroDTO> listarPorCategoria(Long idCategoria) {
+        CategoriaEntity categoria = new CategoriaEntity();
+        categoria.setId(idCategoria);
+        List<LivroEntity> listaEntities =  livroRepository.findByCategoria(categoria);
+        return livroMapper.updateListaLivroDTO(listaEntities);
+    }
+
+    public List<LivroDTO> listarPorEditora(Long idEditora) {
+        EditoraEntity editora = new EditoraEntity();
+        editora.setId(idEditora);
+        List<LivroEntity> listaEntities =  livroRepository.findByEditora(editora);
+        return livroMapper.updateListaLivroDTO(listaEntities);
+    }
+
 
     public LivroDTO pegarUm(Long id) {
 

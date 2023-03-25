@@ -34,6 +34,35 @@ public class LivroController {
 
     }
 
+    @GetMapping("/categoria/{idCategoria}")
+    public ResponseEntity<Object> pegarPorCategoria(@PathVariable Long idCategoria){
+        try {
+            return ResponseEntity.ok(livroService.listarPorCategoria(idCategoria));
+
+        }catch(Exception ex) {
+            log.error(ex.getMessage());
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new MensagemDTO(ex.getMessage()));
+        }
+
+    }
+
+    @GetMapping("/editora/{idEditora}")
+    public ResponseEntity<Object> pegarPorEditora(@PathVariable Long idEditora){
+        try {
+            return ResponseEntity.ok(livroService.listarPorEditora(idEditora));
+
+        }catch(Exception ex) {
+            log.error(ex.getMessage());
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new MensagemDTO(ex.getMessage()));
+        }
+
+    }
+
+
     @GetMapping
     public ResponseEntity<Object> listarTodos() {
         try {
