@@ -29,12 +29,32 @@ Para instalar e executar o projeto, siga estas etapas:
 O aplicativo será executado em http://localhost:8080.
 
 #### Uso
-O aplicativo possui uma API REST que permite que os usuários realizem operações CRUD em uma tabela de exemplo. 
+O aplicativo possui uma API REST que permite que os usuários realizem operações CRUD nas tabelas abaixo. 
 
 Os seguintes endpoints estão disponíveis:
 
-- GET /endpoint: Retorna todos os registros na tabela de exemplo.
-- GET /endpoint/{id}: Retorna o registro correspondente ao ID fornecido.
-- POST /endpoint: Cria um novo registro com base nos dados fornecidos.
-- PUT /endpoint/{id}: Atualiza o registro correspondente ao ID fornecido com os dados fornecidos.
-- DELETE /endpoint/{id}: Exclui o registro correspondente ao ID fornecido.
+#### Categoria
+- GET /categorias: Retorna todos os registros na tabela de Categorias.
+- GET /categorias/{id}: Retorna o registro correspondente ao ID fornecido.
+- POST /categorias: Cria um novo registro com base nos dados fornecidos.
+- PUT /categorias/{id}: Atualiza o registro correspondente ao ID fornecido com os dados fornecidos.
+- DELETE /categorias/{id}: Exclui o registro correspondente ao ID fornecido.
+
+
+#### Editora
+- GET /editoras: Retorna todos os registros na tabela de Editoras.
+- GET /editoras/{id}: Retorna o registro correspondente ao ID fornecido.
+- POST /editoras: Cria um novo registro com base nos dados fornecidos.
+- PUT /editoras/{id}: Atualiza o registro correspondente ao ID fornecido com os dados fornecidos.
+- DELETE /editoras/{id}: Exclui o registro correspondente ao ID fornecido.
+
+
+#### Livros
+- GET /livros: Retorna todos os registros na tabela de Editoras.
+- GET /livros/{id}: Retorna o registro correspondente ao ID fornecido.
+- GET /livros/filter: Filtra por nome e/ou ISBN os registros correspondentes de Livros.
+- GET /livros/categoria/{idCategoria}: Filtra livros por Categoria correspondentes ao ID fornecido.
+- GET /livros/editora/{idEditora}: Filtra livros por Editora correspondentes ao ID fornecido.
+- POST /livros: Cria um novo registro com base nos dados fornecidos.
+- PUT /livros/{id}: Atualiza o registro correspondente ao ID fornecido com os dados fornecidos.
+- DELETE /livros/{id}: Exclui o registro correspondente ao ID fornecido.
